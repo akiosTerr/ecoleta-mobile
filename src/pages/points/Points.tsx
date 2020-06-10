@@ -3,15 +3,24 @@ import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import MapView from 'react-native-maps';
+import {
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity,
+	ScrollView,
+	Image,
+} from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 const Points = () => {
 	const navigation = useNavigation();
 	const handleNavigateBack = () => {
 		navigation.goBack();
 	};
-
+	const handleNavigateToDetail = () => {
+		navigation.navigate('Detail');
+	};
 	return (
 		<>
 			<View style={styles.container}>
@@ -24,13 +33,83 @@ const Points = () => {
 				</Text>
 
 				<View style={styles.mapContainer}>
-					<MapView style={styles.map} />
+					<MapView
+						initialRegion={{
+							latitude: -23.6858385,
+							longitude: -46.5644216,
+							latitudeDelta: 0.014,
+							longitudeDelta: 0.014,
+						}}
+						style={styles.map}>
+						<Marker
+							onPress={handleNavigateToDetail}
+							style={styles.mapMarker}
+							coordinate={{
+								latitude: -23.6858385,
+								longitude: -46.5644216,
+							}}>
+							<View style={styles.mapMarkerContainer}>
+								<Image
+									style={styles.mapMarkerImage}
+									source={{
+										uri:
+											'https://i.mgfserv.com/800x480/aHR0cDovL2ltZy5vbHguY29tLmJyL2ltYWdlcy81NS81NTc1MzAwMzIwODQ5MzcuanBn.jpg',
+									}}
+								/>
+								<Text style={styles.mapMarkerTitle}>Mercado</Text>
+							</View>
+						</Marker>
+					</MapView>
 				</View>
 			</View>
 			<View style={styles.itemsContainer}>
-				<TouchableOpacity style={styles.item} onPress={() => {}}>
-					<SvgUri width={42} height={42} uri={''}></SvgUri>
-				</TouchableOpacity>
+				<ScrollView
+					horizontal
+					showsHorizontalScrollIndicator={false}
+					contentContainerStyle={{ paddingHorizontal: 20 }}>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.item} onPress={() => {}}>
+						<SvgUri
+							width={42}
+							height={42}
+							uri={'https://svgshare.com/i/LuU.svg'}></SvgUri>
+						<Text style={styles.itemTitle}>Lamps</Text>
+					</TouchableOpacity>
+				</ScrollView>
 			</View>
 		</>
 	);
